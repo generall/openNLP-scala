@@ -10,3 +10,6 @@ val p = "[^-]+$".r
 val tag = "I-NN"
 
 p.findFirstIn(tag).get
+
+
+"-" * 10

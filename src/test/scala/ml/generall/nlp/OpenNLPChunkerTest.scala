@@ -34,4 +34,25 @@ class OpenNLPChunkerTest extends FunSuite {
 
   }
 
+  test("testTitanicFilm") {
+    val str = "James Cameron made Titanic"
+    val chunker = new OpenNLPChunker
+    val res = chunker.group(List(str))
+
+    res.foreach(x => {
+      x.foreach(println)
+    })
+  }
+
+  test("testTitanicShip") {
+    val str = "Edward Smith ruled Titanic"
+    val chunker = new OpenNLPChunker
+    val res = chunker.group(List(str))
+
+    res.foreach(x => {
+      x.foreach(println)
+    })
+  }
+
+
 }

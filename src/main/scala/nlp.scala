@@ -5,6 +5,8 @@ import chalk.tools.postag.{POSModel, POSTaggerME}
 import chalk.tools.tokenize.{TokenizerME, TokenizerModel}
 import chalk.tools.sentdetect.SentenceModel
 import chalk.tools.sentdetect.SentenceDetectorME
+import edu.stanford.nlp.simple._
+import collection.JavaConverters._
 
 
 /**
@@ -75,6 +77,16 @@ object nlp extends App{
     arr.foreach(println)
   }
 
-  sentExample
+  def stemm = {
+    val doc = new Document("Moving forward to Kirov. Testing of natural language processing.")
+    doc.sentences().asScala.foreach(sent => {
+      sent.lemmas().asScala.foreach(println)
+
+    })
+  }
+
+  stemm
+
+  //sentExample
 
 }
