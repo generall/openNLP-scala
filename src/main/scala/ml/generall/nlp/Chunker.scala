@@ -4,7 +4,6 @@ package ml.generall.nlp
   * Created by generall on 16.08.16.
   */
 
-
 trait Chunker {
 
   val acceptedGroups: Set[String]

@@ -26,7 +26,7 @@ class IDFDict {
     oos.close()
   }
 
-  val totalWordCount = 22162602.0
+  val totalWordCount = 22162602.0 /* from dict */
 
 
   val map: Map[String, List[Record]] = {
@@ -49,6 +49,5 @@ class IDFDict {
   def getIDF(lemma: String): Double = {
     Math.log( totalWordCount / map.getOrElse(lemma, List()).foldLeft(1)( _ + _.count ))
   }
-
 
 }
