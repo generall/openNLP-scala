@@ -13,8 +13,13 @@ libraryDependencies ++= Seq(
   "org.scalanlp" % "chalk" % "1.1.2",
   "edu.stanford.nlp" % "stanford-corenlp" % "3.6.0",
   "edu.stanford.nlp" % "stanford-corenlp" % "3.6.0" classifier "models",
-  "com.google.protobuf" % "protobuf-java" % "2.6.1"
+  "com.google.protobuf" % "protobuf-java" % "2.6.1",
+  "xerces" % "xercesImpl" % "2.9.1"
 )
+
+
+dependencyOverrides += "org.scala-lang.modules" %% "scala-xml" % "1.0.5"
+
 
 resolvers ++= Seq(
   Resolver.mavenLocal
