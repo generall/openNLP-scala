@@ -72,10 +72,6 @@ class CoreNLPTools {
 
     val tree = sentence.get(classOf[TreeAnnotation]);
     val groups = groupTree(tree)
-    groups.foreach(x => {
-      print(s"${x._1}: ")
-      println(x._2.mkString(" "))
-    })
 
     val tokens = sentence.get(classOf[TokensAnnotation]).asScala.toArray
 
