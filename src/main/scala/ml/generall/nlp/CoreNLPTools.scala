@@ -15,7 +15,7 @@ case class ChunkRecord(
                         word: String,
                         lemma: String,
                         pos: String,
-                        ner: String,
+//                        ner: String,
                         parseTag: String,
                         groupId: Int,
                         beginPos: Int,
@@ -37,7 +37,7 @@ class ChunkGroup(
 class CoreNLPTools {
 
   val props = new Properties()
-  props.setProperty("annotators", "tokenize, ssplit, pos, lemma, ner, parse")
+  props.setProperty("annotators", "tokenize, ssplit, pos, lemma, parse")
   val pipeline = new StanfordCoreNLP(props)
 
   case class ParseRecord(idx: Int, label: String )
@@ -84,8 +84,8 @@ class CoreNLPTools {
         // this is the POS tag of the token
         val pos = token.get(classOf[PartOfSpeechAnnotation])
         // this is the NER label of the token
-        val ne = token.get(classOf[NamedEntityTagAnnotation])
-        ChunkRecord(word, lemma, pos, ne, group._1, idx, token.beginPosition(), token.endPosition())
+        //val ne = token.get(classOf[NamedEntityTagAnnotation])
+        ChunkRecord(word, lemma, pos, /*ne,*/ group._1, idx, token.beginPosition(), token.endPosition())
       })
     })
 

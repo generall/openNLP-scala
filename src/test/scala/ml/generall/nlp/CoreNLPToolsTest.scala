@@ -1,5 +1,8 @@
 package ml.generall.nlp
 
+import java.util.Properties
+
+import edu.stanford.nlp.pipeline.StanfordCoreNLP
 import org.scalatest.FunSuite
 
 /**
@@ -55,5 +58,38 @@ class CoreNLPToolsTest extends FunSuite {
     println(text.substring(sentRagne2._1, sentRagne2._2))
 
   }
+
+  def time[R](block: => R): R = {
+    val t0 = System.currentTimeMillis()
+    val result = block    // call-by-name
+    val t1 = System.currentTimeMillis()
+    println("Elapsed time: " + (t1 - t0) + "ms")
+    result
+  }
+
+  def runCoreNLP(params: String) = {
+    val props = new Properties()
+    props.setProperty("annotators", params) //"tokenize, ssplit, pos, lemma, ner, parse")
+    val pipeline = new StanfordCoreNLP(props)
+
+    time {
+      pipeline.process("According to researcher Ibrahim Al-Khulaifi, there were three stages in the production of the show.")
+      pipeline.process("The first stage was pre-production research, which identified basic education needs for children under the age of six.")
+      pipeline.process("The second stage involved the creation of a pilot reel to test children on the show's effects and for review by educators, sociologists, psychologists, and other experts, who were invited to a seminar.")
+      pipeline.process("Finally, the series was filmed and aired. Research began in August 1977; the team was led by an educator and included a linguist and a psychologist, all of whom were on the faculty of Kuwait University.")
+      pipeline.process("The show was tested on different socioeconomic groups of children, between the ages of three and six, in kindergartens and preschools in four representative cities from Arab countries.")
+      pipeline.process("The team proposed curriculum goals based upon the research and, during a seminar, Arab and CTW educators agreed on ten final goals.")
+      pipeline.process("Iftah Ya Simsim emphasized scientific thinking and the effects of technology on society.")
+      pipeline.process("It sought to provide children with experiences that enriched their knowledge about their environment and improved their reasoning, through teaching them mathematical and geometric concepts.")
+      pipeline.process("The show introduced its viewers to Arab history by citing important events, such as showing castles that were the center of historic battles.")
+      pipeline.process("Geography was highlighted, especially the location of countries and their cities and capitals, which had the secondary effect of helping children increase their feelings of belonging and feeling proud of their Arab heritage.")
+    }
+
+  }
+
+  test("testSpeed") {
+    runCoreNLP("tokenize, ssplit, pos, lemma, ner, parse")
+  }
+
 
 }

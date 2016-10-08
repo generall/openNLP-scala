@@ -2,9 +2,6 @@ package ml.generall.nlp
 
 import java.io._
 
-import scala.collection.mutable
-
-case class Record(word: String, lemma: String, pos: String, count: Int) {}
 
 /**
   * Created by generall on 10.09.16.
