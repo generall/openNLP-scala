@@ -33,7 +33,7 @@ class OpenNLPChunker extends Chunker{
   override def chunk(sentences: List[String]): List[Array[(String, (String, String))]] = {
     val tokenGroups = sentences.map(tokenizer.tokenize)
 
-    val tokens = tokenGroups.flatMap(x => x).toArray
+    val tokens = tokenGroups.flatten.toArray
     val tags = posTagger.tag(tokens)
     val chunks = chunker.chunk(tokens, tags)
 
