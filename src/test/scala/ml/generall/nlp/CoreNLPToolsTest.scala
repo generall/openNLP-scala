@@ -13,10 +13,19 @@ class CoreNLPToolsTest extends FunSuite {
   test("testProcess") {
     val nlp = new CoreNLPTools
 
-    val tokens = nlp.process("Titanic hit iceberg in the Atlantic ocean")
+    val tokens = nlp.process("A Berlin robber armed only with a barbeque fork attempted to hold up a supermarket on Thursday night.")
 
     tokens.foreach(println)
   }
+
+  test("testProcess2") {
+    val nlp = new CoreNLPTools
+
+    val tokens = nlp.process("David and Victoria added spice to their marriage .")
+
+    tokens.foreach(println)
+  }
+
 
   test("testPosition") {
     import Position._
